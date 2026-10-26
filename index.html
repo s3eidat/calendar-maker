@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; media-src 'self' data: blob:; connect-src 'self' data: blob:; worker-src 'self' blob:; manifest-src 'self'; form-action 'none'; base-uri 'none'; object-src 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Calendar Maker — Free Printable Monthly &amp; Yearly Calendar with Hijri Dates | S3eidat Tools</title>
+<meta name="description" content="Make a printable month or year calendar: week starts Saturday, Sunday or Monday, optional Hijri dates, your own coloured events and birthdays, English or Arabic month names, A4 or Letter in portrait or landscape, PNG export. Free and private.">
+<meta property="og:title" content="Calendar Maker — printable calendars with Hijri dates">
+<meta property="og:description" content="Monthly and yearly printable calendars with events, Hijri dates and Arabic month names. Runs 100% in your browser.">
+<link rel="icon" href="kit/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="kit/kit.css">
+<link rel="stylesheet" href="app.css">
+<script src="kit/kit.js"></script>
+<!--s3:seo-->
+<link rel="canonical" href="https://s3eidat.github.io/calendar-maker/">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0d0f12">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="S3eidat Tools">
+<meta property="og:url" content="https://s3eidat.github.io/calendar-maker/">
+<meta property="og:image" content="https://s3eidat.github.io/calendar-maker/screenshot.png">
+<meta property="og:image:width" content="1280"><meta property="og:image:height" content="800">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Calendar Maker — Printable monthly and yearly calendars">
+<meta name="twitter:description" content="Printable monthly and yearly calendars. Free, private and runs 100% in your browser: no sign-up, no uploads.">
+<meta name="twitter:image" content="https://s3eidat.github.io/calendar-maker/screenshot.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Calendar Maker", "url": "https://s3eidat.github.io/calendar-maker/", "description": "Printable monthly and yearly calendars. Free, private and runs 100% in your browser: no sign-up, no uploads.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any (web browser)", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "image": "https://s3eidat.github.io/calendar-maker/screenshot.png", "author": {"@type": "Person", "name": "s3eidat", "url": "https://github.com/s3eidat"}}</script>
+<!--/s3:seo-->
+</head>
+<body data-tool="calendar-maker">
+<main class="s3-main cm-main">
+  <section class="s3-hero no-print">
+    <h1>Calendar Maker</h1>
+    <p>Printable month and year calendars with your own events, optional Hijri dates and English or Arabic month names. Print it or save a month as a PNG.</p>
+  </section>
+
+  <div class="cm-layout">
+    <aside class="card stack no-print cm-side">
+      <div class="row between">
+        <div class="seg" id="view" role="group" aria-label="View">
+          <button aria-pressed="true" data-v="month">Month</button>
+          <button aria-pressed="false" data-v="year">Year</button>
+        </div>
+        <div class="row cm-nav">
+          <button class="btn icon small" id="prev" aria-label="Previous">‹</button>
+          <button class="btn small" id="today">Today</button>
+          <button class="btn icon small" id="next" aria-label="Next">›</button>
+        </div>
+      </div>
+      <div class="grid-2 cm-tight">
+        <label class="field" id="monthWrap">Month
+          <select class="select" id="month"></select>
+        </label>
+        <label class="field">Year
+          <input class="input" id="year" type="number" min="1900" max="2100" inputmode="numeric">
+        </label>
+      </div>
+      <label class="field">Title (optional)
+        <input class="input" id="title" maxlength="60" dir="auto" placeholder="e.g. Family calendar">
+      </label>
+      <div class="field">Week starts on
+        <div class="seg" id="weekStart" role="group" aria-label="Week starts on">
+          <button aria-pressed="true" data-v="6">Sat</button>
+          <button aria-pressed="false" data-v="0">Sun</button>
+          <button aria-pressed="false" data-v="1">Mon</button>
+        </div>
+      </div>
+      <div class="field">Language
+        <div class="seg" id="lang" role="group" aria-label="Language">
+          <button aria-pressed="true" data-v="en">English</button>
+          <button aria-pressed="false" data-v="ar"><bdi lang="ar">يناير</bdi></button>
+          <button aria-pressed="false" data-v="lev"><bdi lang="ar">كانون الثاني</bdi></button>
+        </div>
+      </div>
+      <label class="check"><input type="checkbox" id="hijri"> Show Hijri dates <span class="faint" lang="ar">التاريخ الهجري</span></label>
+      <label class="check" id="digitsWrap"><input type="checkbox" id="indic"> Arabic-Indic digits <bdi lang="ar" class="faint">١٢٣</bdi></label>
+      <div class="row cm-paperrow">
+        <label class="field">Paper
+          <select class="select" id="paper"><option value="A4">A4</option><option value="Letter">Letter</option></select>
+        </label>
+        <div class="field">Orientation
+          <div class="seg" id="orient" role="group" aria-label="Orientation">
+            <button aria-pressed="false" data-v="portrait">Portrait</button>
+            <button aria-pressed="true" data-v="landscape">Landscape</button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <button class="btn primary grow" id="print"><svg class="i"><use href="#i-file"/></svg>Print</button>
+        <button class="btn grow" id="png"><svg class="i"><use href="#i-image"/></svg>PNG of month</button>
+      </div>
+
+      <h2 class="cm-h">Events <small id="evCount"></small></h2>
+      <div class="cm-evform">
+        <label class="field">Date <input class="input" type="date" id="evDate"></label>
+        <label class="field">What <input class="input" id="evText" maxlength="60" dir="auto" placeholder="e.g. Sara's birthday"></label>
+        <div class="row between">
+          <div class="cm-swatches" id="evColors" role="group" aria-label="Colour"></div>
+          <label class="check"><input type="checkbox" id="evYearly"> Every year</label>
+        </div>
+        <button class="btn" id="evAdd"><svg class="i"><use href="#i-plus"/></svg>Add event</button>
+      </div>
+      <ul class="cm-evlist" id="evList"></ul>
+      <div class="row">
+        <button class="btn ghost small" id="evExport"><svg class="i"><use href="#i-download"/></svg>Export</button>
+        <label class="btn ghost small" id="evImport"><svg class="i"><use href="#i-upload"/></svg>Import<input type="file" accept=".json,application/json" hidden></label>
+      </div>
+    </aside>
+
+    <section class="cm-stage">
+      <div class="cm-wrap" id="wrap">
+        <div class="cm-paper" id="paperEl"></div>
+      </div>
+    </section>
+  </div>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
